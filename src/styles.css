@@ -1,0 +1,147 @@
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --amber: #ffb000;
+  --green: #00ff66;
+  --dim: #4a4a4a;
+  --dimmer: #2a2a2a;
+  --grid-line: rgba(255, 255, 255, 0.06);
+
+  /* rigid typographic scale (1.25 ratio) */
+  --t-xs: 10px;
+  --t-sm: 12px;
+  --t-base: 14px;
+  --t-md: 17px;
+  --t-lg: 22px;
+  --t-xl: 28px;
+  --t-2xl: 44px;
+  --t-3xl: 68px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: var(--black);
+  color: var(--white);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-weight: 400;
+  font-size: var(--t-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.01em;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--amber);
+  color: var(--black);
+}
+
+/* scanline / CRT texture overlay — subtle */
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9000;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.15) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+/* faint vignette */
+.vignette-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8999;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.7) 100%);
+}
+
+/* monospace utility classes */
+.mono-label {
+  font-size: var(--t-xs);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.amber { color: var(--amber); }
+.green { color: var(--green); }
+.dim { color: var(--dim); }
+
+/* blinking cursor */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.cursor-blink::after {
+  content: "█";
+  animation: blink 1s steps(1) infinite;
+  margin-left: 2px;
+}
+
+/* canvas sits behind everything */
+.canvas-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* HUD + content sit above */
+.ui-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+.ui-layer > * {
+  pointer-events: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+/* thin scrollbar where it appears (project detail panels) */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--dimmer); }
+::-webkit-scrollbar-thumb:hover { background: var(--amber); }
+
+@media (max-width: 768px) {
+  :root {
+    --t-2xl: 32px;
+    --t-3xl: 44px;
+  }
+}

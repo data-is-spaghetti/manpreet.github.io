@@ -1,0 +1,12 @@
+PLACE YOUR RESUME PDF HERE
+==========================
+
+1. Export your resume as a PDF.
+2. Name it exactly:  Manpreet_Kaur_Resume.pdf
+3. Drop it into this /public folder.
+
+The "DOWNLOAD RESUME" links in Section 0x00 (Main Engine) and the
+2D fallback both point to it automatically.
+
+To use a different filename, change `resumePath` in
+src/data/portfolio.js to match.
