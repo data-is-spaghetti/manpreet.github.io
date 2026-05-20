@@ -56,29 +56,32 @@ export default function Fallback() {
       {/* 0x01 */}
       <section className="fb-section">
         <div className="mono-label">0x01 — PROOFS &amp; IMPLEMENTATIONS</div>
-        {projects.map((p) => (
-          <div key={p.id} className="fb-project">
-            <div className="fb-project-head">
-              <span className="amber">{p.id}</span>
-              <strong>{p.title}</strong>
-              <span className="dim">{p.org} · {p.year}</span>
-            </div>
-            <p className="fb-project-arch">{p.architecture}</p>
-            <div className="fb-metrics">
-              {p.metrics.map((m) => (
-                <span key={m.label} className="fb-metric">
-                  <span className="dim">{m.label}</span> <span className="green">{m.value}</span>
-                </span>
+        {projects.map((p, i) => {
+          const id = `0x01.${String.fromCharCode(65 + i)}`;
+          return (
+            <div key={p.title} className="fb-project">
+              <div className="fb-project-head">
+                <span className="amber">{id}</span>
+                <strong>{p.title}</strong>
+                <span className="dim">{p.subtitle} · {p.year}</span>
+              </div>
+              <p className="fb-project-arch">{p.architecture}</p>
+              <div className="fb-metrics">
+                {p.metrics.map((m) => (
+                  <span key={m.label} className="fb-metric">
+                    <span className="dim">{m.label}</span> <span className="green">{m.value}</span>
+                  </span>
+                ))}
+              </div>
+              <div className="fb-stack">{p.stack.join(" · ")}</div>
+              {p.links.map((l) => (
+                <a key={l.label} href={l.url} target="_blank" rel="noreferrer" className="fb-link">
+                  {l.label} ↗
+                </a>
               ))}
             </div>
-            <div className="fb-stack">{p.stack.join(" · ")}</div>
-            {p.links.map((l) => (
-              <a key={l.label} href={l.url} target="_blank" rel="noreferrer" className="fb-link">
-                {l.label} ↗
-              </a>
-            ))}
-          </div>
-        ))}
+          );
+        })}
       </section>
 
       {/* 0x02 */}

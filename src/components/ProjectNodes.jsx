@@ -1,40 +1,54 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
 import { projects } from "../data/portfolio";
 import { SECTION_ANCHORS } from "./CameraRig";
+import { fibonacciSphere } from "../lib/math";
 
 // ════════════════════════════════════════════════════════════════
 //  ProjectNodes
-//  Each project is a wireframe octahedron node floating in the
-//  coordinate space around the 0x01 anchor. Hovering a node
-//  expands a structural breakdown via a Drei <Html> overlay —
-//  crisp DOM text, not blurry WebGL type.
+//
+//  Projects render as wireframe octahedron nodes around the 0x01
+//  anchor. Positions are computed by `fibonacciSphere(N)` so adding
+//  a project to portfolio.js just slots it in — no manual coords.
+//
+//  Hovering a node projects the architectural breakdown via Drei's
+//  <Html> overlay (crisp DOM text, not blurry WebGL type).
 // ════════════════════════════════════════════════════════════════
 
 const ANCHOR = SECTION_ANCHORS[1]; // 0x01 PROOFS anchor
 
-function ProjectNode({ project, onHover, isActive, dimmed }) {
+// Layout tuning — keep these in one place so the whole grid can be
+// rebalanced from a single edit when the project list grows.
+const CLUSTER_RADIUS = 2.2;   // spread of the project cluster
+const NODE_SIZE      = 0.26;  // octahedron size (smaller now)
+const Z_SQUASH       = 0.6;   // flatten depth so nothing sits too far back
+
+function hexId(i) {
+  return `0x01.${String.fromCharCode(65 + i)}`; // 0x01.A, 0x01.B, ...
+}
+
+function ProjectNode({ project, index, position, onHover, isActive, dimmed }) {
   const meshRef = useRef();
   const ringRef = useRef();
 
-  // node position = anchor + project coord
+  // absolute world position = anchor + offset
   const pos = [
-    ANCHOR[0] + project.coord[0],
-    ANCHOR[1] + project.coord[1],
-    ANCHOR[2] - 6 + project.coord[2],
+    ANCHOR[0] + position[0],
+    ANCHOR[1] + position[1],
+    ANCHOR[2] - 6 + position[2],
   ];
 
   useFrame((state, dt) => {
     if (!meshRef.current) return;
     const t = state.clock.elapsedTime;
     // slow deterministic rotation — each node on its own phase
-    meshRef.current.rotation.x = t * 0.18 + project.coord[0];
-    meshRef.current.rotation.y = t * 0.24 + project.coord[1];
+    meshRef.current.rotation.x = t * 0.18 + index * 0.7;
+    meshRef.current.rotation.y = t * 0.24 + index * 1.1;
 
-    // scale up when active
-    const target = isActive ? 1.5 : dimmed ? 0.7 : 1;
+    // smooth scale on hover
+    const target = isActive ? 1.55 : dimmed ? 0.65 : 1;
     meshRef.current.scale.lerp(
       new THREE.Vector3(target, target, target),
       Math.min(1, dt * 8)
@@ -44,17 +58,14 @@ function ProjectNode({ project, onHover, isActive, dimmed }) {
       ringRef.current.rotation.z = t * 0.5;
       const ringTarget = isActive ? 1 : 0;
       ringRef.current.scale.lerp(
-        new THREE.Vector3(
-          1 + ringTarget * 0.5,
-          1 + ringTarget * 0.5,
-          1
-        ),
+        new THREE.Vector3(1 + ringTarget * 0.5, 1 + ringTarget * 0.5, 1),
         Math.min(1, dt * 8)
       );
     }
   });
 
   const color = isActive ? "#ffb000" : "#ffffff";
+  const id = hexId(index);
 
   return (
     <group position={pos}>
@@ -63,7 +74,7 @@ function ProjectNode({ project, onHover, isActive, dimmed }) {
         ref={meshRef}
         onPointerOver={(e) => {
           e.stopPropagation();
-          onHover(project.id);
+          onHover(index);
           document.body.style.cursor = "pointer";
         }}
         onPointerOut={() => {
@@ -71,7 +82,7 @@ function ProjectNode({ project, onHover, isActive, dimmed }) {
           document.body.style.cursor = "auto";
         }}
       >
-        <octahedronGeometry args={[0.42, 0]} />
+        <octahedronGeometry args={[NODE_SIZE, 0]} />
         <meshBasicMaterial
           color={color}
           wireframe
@@ -82,7 +93,7 @@ function ProjectNode({ project, onHover, isActive, dimmed }) {
 
       {/* inner solid core */}
       <mesh scale={0.5}>
-        <octahedronGeometry args={[0.42, 0]} />
+        <octahedronGeometry args={[NODE_SIZE, 0]} />
         <meshBasicMaterial
           color={color}
           transparent
@@ -92,7 +103,7 @@ function ProjectNode({ project, onHover, isActive, dimmed }) {
 
       {/* active ring */}
       <mesh ref={ringRef} scale={0}>
-        <ringGeometry args={[0.7, 0.74, 48]} />
+        <ringGeometry args={[NODE_SIZE * 1.7, NODE_SIZE * 1.78, 48]} />
         <meshBasicMaterial
           color="#ffb000"
           transparent
@@ -101,9 +112,9 @@ function ProjectNode({ project, onHover, isActive, dimmed }) {
         />
       </mesh>
 
-      {/* coordinate label — always visible, small */}
+      {/* coordinate label — always visible */}
       <Html
-        position={[0, -0.75, 0]}
+        position={[0, -NODE_SIZE * 1.9, 0]}
         center
         distanceFactor={8}
         style={{ pointerEvents: "none" }}
@@ -111,7 +122,7 @@ function ProjectNode({ project, onHover, isActive, dimmed }) {
         <div
           style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "11px",
+            fontSize: "10px",
             letterSpacing: "0.1em",
             color: isActive ? "#ffb000" : "#4a4a4a",
             whiteSpace: "nowrap",
@@ -119,21 +130,21 @@ function ProjectNode({ project, onHover, isActive, dimmed }) {
             textShadow: "0 0 8px #000",
           }}
         >
-          {project.id}
+          {id} · {project.title}
         </div>
       </Html>
 
       {/* expanded breakdown — only when active */}
       {isActive && (
         <Html
-          position={[0.9, 0.2, 0]}
-          distanceFactor={7}
+          position={[NODE_SIZE * 2.4, 0.15, 0]}
+          distanceFactor={6.5}
           style={{ pointerEvents: "none" }}
         >
           <div className="node-breakdown">
             <div className="node-breakdown-title">{project.title}</div>
             <div className="node-breakdown-org">
-              {project.org} · {project.year}
+              {project.subtitle} · {project.year}
             </div>
             <div className="node-breakdown-arch">{project.architecture}</div>
             <div className="node-breakdown-metrics">
@@ -157,17 +168,27 @@ function ProjectNode({ project, onHover, isActive, dimmed }) {
 export default function ProjectNodes({ visible }) {
   const [hovered, setHovered] = useState(null);
 
+  // Compute positions ONCE for the current project count. If projects.length
+  // changes (e.g. you add one), this recomputes — but only on count change,
+  // not on hover state changes.
+  const positions = useMemo(
+    () => fibonacciSphere(projects.length, CLUSTER_RADIUS, Z_SQUASH),
+    []
+  );
+
   if (!visible) return null;
 
   return (
     <group>
-      {projects.map((p) => (
+      {projects.map((p, i) => (
         <ProjectNode
-          key={p.id}
+          key={p.title}
           project={p}
+          index={i}
+          position={positions[i]}
           onHover={setHovered}
-          isActive={hovered === p.id}
-          dimmed={hovered !== null && hovered !== p.id}
+          isActive={hovered === i}
+          dimmed={hovered !== null && hovered !== i}
         />
       ))}
     </group>

@@ -1,13 +1,17 @@
 // ════════════════════════════════════════════════════════════════
 //  PORTFOLIO DATA — "The Geometry of Spacetime"
-//  Each section is hex-addressed. Each project is a coordinate.
+//
+//  To add a new project: just append to the `projects` array.
+//  The 3D layout is computed automatically (Fibonacci sphere) so
+//  no manual coordinate tuning is needed as the list grows.
 // ════════════════════════════════════════════════════════════════
 
 export const profile = {
   name: "Manpreet Kaur",
   role: "Software Engineer",
-  // The "core vector definition" shown in the Main Engine readout.
-  coreVector: "const Developer = CoreEngine.optimize(System);",
+  // Humble, technical, has the blinking cursor effect.
+  // Reads like a git log entry or a status line, not a self-mythologizing one-liner.
+  coreVector: "// shipping, learning, repeat.",
   location: "Bengaluru, IN",
   origin: "12.9716°N, 77.5946°E",
   resumePath: "Manpreet_Kaur_Resume.pdf",
@@ -23,101 +27,81 @@ export const socials = [
 // ── Section 0x00: MAIN ENGINE (Hero) ──
 export const engine = {
   statement:
-    "I design and ship full-stack systems — APIs, distributed services, and the interfaces on top of them.",
-  // readout stats — some are live (computed), some static
+    "I design and ship full-stack systems: APIs, distributed services, and the interfaces on top of them.",
+  // Smaller, factual readouts. Less "boastful spec sheet", more "git status".
+  // The big chunky numbers are dialed down; the notes carry the real info.
   specs: [
-    { key: "RUNTIME", value: "4.0 yrs", note: "production" },
-    { key: "STACK", value: "POLYGLOT", note: "java · ts · c# · py" },
-    { key: "SCALE", value: "1e6+", note: "users served" },
-    { key: "UPTIME", value: "99.9%", note: "sustained" },
+    { key: "EXP",    value: "4y",        note: "production" },
+    { key: "STACK",  value: "ts · java", note: "+ py, c#, go" },
+    { key: "FOCUS",  value: "distrib.",  note: "systems · APIs" },
+    { key: "STATUS", value: "shipping",  note: "open to roles" },
   ],
 };
 
 // ── Section 0x01: PROOFS & IMPLEMENTATIONS (Projects) ──
-// Each project is a node in the hypercube. `coord` places it in 3D space.
+// To add a project: append a new object. Position is computed automatically.
+// `id` is auto-generated from index in ProjectNodes.jsx (0x01.A, 0x01.B, ...).
 export const projects = [
   {
-    id: "0x01.A",
-    title: "Enterprise Government Platforms",
-    org: "Deloitte U.S.I.",
-    year: "2022—NOW",
-    coord: [-3.2, 1.4, -1.0],
-    summary:
-      "Full-stack features across 12+ distributed enterprise applications serving 1M+ users on US state government platforms.",
-    architecture:
-      "GraphQL + REST APIs on Spring Boot. Microservices with circuit-breaker patterns, Redis caching, event-driven integration across 15+ external services. React/Angular frontends. CI/CD on AWS.",
-    metrics: [
-      { label: "RESPONSE", value: "<200ms" },
-      { label: "UPTIME", value: "99.9%" },
-      { label: "SERVICES", value: "15+" },
-    ],
-    stack: ["Java", "Spring Boot", "React", "Angular", "AWS", "Redis", "GraphQL"],
-    links: [],
-  },
-  {
-    id: "0x01.B",
-    title: "Algorithmic Trading Platform",
+    title: "WalletX",
     org: "Independent",
+    subtitle: "Wealth-Partitioning OS",
     year: "2025",
-    coord: [2.8, 2.0, 0.6],
     summary:
-      "An automated trading system: market-data ingestion, strategy backtesting, and live order execution against broker APIs.",
+      "A non-custodial financial OS that lets users architect every rupee across purpose-built partitions.",
     architecture:
-      "Event-driven pipeline ingesting real-time market feeds. Strategy engine with a pluggable signal abstraction, vectorized backtesting over historical data, and a risk layer enforcing position limits before execution. Latency-sensitive hot path kept allocation-free.",
+      "Cash, equity, crypto, and hard assets under one unified ledger. Built on a PERN + TypeScript stack chosen for ACID correctness (Postgres NUMERIC, Decimal.js) rather than convenience. Day-0 architecture covers cash partitions, transfers, and a per-partition encryption-key security model.",
     metrics: [
-      { label: "BACKTEST", value: "vectorized" },
-      { label: "HOT PATH", value: "0-alloc" },
-      { label: "SIGNALS", value: "pluggable" },
+      { label: "PARTITIONS", value: "dynamic" },
+      { label: "MONEY",      value: "decimal-safe" },
+      { label: "ACID",       value: "strict" },
     ],
-    stack: ["Python", "Pandas", "NumPy", "WebSockets", "Broker APIs", "asyncio"],
+    stack: ["TypeScript", "React", "Fastify", "PostgreSQL", "Prisma", "Redis", "Zod"],
     links: [{ label: "GITHUB", url: "https://github.com/data-is-spaghetti" }],
   },
   {
-    id: "0x01.C",
-    title: "Real-Time Audio Analyzer",
+    title: "Caffèhop",
     org: "Independent",
+    subtitle: "Coffee discovery & identity",
     year: "2025",
-    coord: [-1.6, -2.2, 1.4],
     summary:
-      "A browser-based audio analysis tool: live FFT spectral visualization, beat detection, and frequency-domain feature extraction.",
+      "A coffee-first discovery and identity platform — sign up, verify, and build a profile around the cafés you visit.",
     architecture:
-      "Web Audio API graph feeding an AnalyserNode. FFT bins mapped to a logarithmic frequency scale, smoothed with an exponential moving average. Beat detection via spectral-flux onset detection. Render loop decoupled from the audio thread, drawn on Canvas at 60fps.",
+      "Next.js 14 App Router frontend, Express + MongoDB backend, email and phone OTP with refresh-token rotation. Hashed OTP storage with 10-minute TTL, httpOnly cookie sessions, JWT access tokens.",
     metrics: [
-      { label: "FFT", value: "real-time" },
-      { label: "RENDER", value: "60fps" },
-      { label: "ONSET", value: "spectral-flux" },
+      { label: "OTP",    value: "6-digit · 10min" },
+      { label: "TOKENS", value: "rotated" },
+      { label: "AUTH",   value: "email + phone" },
     ],
-    stack: ["TypeScript", "Web Audio API", "Canvas", "DSP", "FFT"],
+    stack: ["Next.js 14", "React 18", "Node.js", "Express", "MongoDB", "JWT", "Tailwind"],
     links: [{ label: "GITHUB", url: "https://github.com/data-is-spaghetti" }],
   },
   {
-    id: "0x01.D",
     title: "CodeLens",
     org: "Independent",
+    subtitle: "Multi-agent code review CLI",
     year: "2025",
-    coord: [3.4, -1.2, -1.8],
     summary:
-      "A multi-agent CLI that runs code reviews through LLMs, with a pluggable provider backend.",
+      "A developer tool that runs code reviews through LLMs, with a pluggable provider backend.",
     architecture:
-      "Provider abstraction over Ollama, Gemini, Mistral. RAG pipeline over codebase context. Token-by-token SSE streaming, multi-agent orchestration (context agent + review agent). One-line install with a pre-push git hook. Published to npm.",
+      "Provider abstraction over Ollama, Gemini, Mistral. RAG pipeline over codebase context, token-by-token SSE streaming, multi-agent orchestration (context agent + review agent). One-line install with a pre-push git hook. Published to npm.",
     metrics: [
       { label: "PROVIDERS", value: "3+" },
-      { label: "STREAM", value: "SSE" },
-      { label: "AGENTS", value: "multi" },
+      { label: "STREAM",    value: "SSE" },
+      { label: "AGENTS",    value: "multi" },
     ],
     stack: ["TypeScript", "Node.js", "RAG", "LLM APIs", "npm"],
     links: [{ label: "GITHUB", url: "https://github.com/data-is-spaghetti" }],
   },
   {
-    id: "0x01.E",
     title: "Stellarcast",
     org: "Independent",
+    subtitle: "Real-time astronomy overlay",
     year: "2025",
-    coord: [-2.4, 0.2, 2.6],
     summary:
-      "A Chrome extension overlaying live astronomical data onto the browser.",
+      "A Chrome MV3 extension overlaying live astronomical data onto the browser.",
     architecture:
-      "Service-worker pipeline syncing open APIs every 60s. 8K+ data points rendered via instanced Three.js meshes at 60fps, spatial hashing for sub-millisecond lookups. MV3 architecture.",
+      "Service-worker pipeline syncing open APIs every 60s. 8K+ data points rendered via instanced Three.js meshes at 60fps, with spatial hashing for sub-millisecond lookups.",
     metrics: [
       { label: "POINTS", value: "8K+" },
       { label: "RENDER", value: "60fps" },
@@ -126,10 +110,44 @@ export const projects = [
     stack: ["TypeScript", "Three.js", "Service Workers", "Chrome MV3"],
     links: [{ label: "GITHUB", url: "https://github.com/data-is-spaghetti" }],
   },
+  {
+    title: "Algorithmic Trading Platform",
+    org: "Independent",
+    subtitle: "Automated trading system",
+    year: "2025",
+    summary:
+      "An automated trading system: market-data ingestion, strategy backtesting, and live order execution.",
+    architecture:
+      "Event-driven pipeline ingesting real-time market feeds. Strategy engine with a pluggable signal abstraction, vectorized backtesting over historical data, and a risk layer enforcing position limits before execution. Hot path kept allocation-free.",
+    metrics: [
+      { label: "BACKTEST", value: "vectorized" },
+      { label: "HOT PATH", value: "0-alloc" },
+      { label: "SIGNALS",  value: "pluggable" },
+    ],
+    stack: ["Python", "Pandas", "NumPy", "WebSockets", "asyncio"],
+    links: [{ label: "GITHUB", url: "https://github.com/data-is-spaghetti" }],
+  },
+  {
+    title: "Real-Time Audio Analyzer",
+    org: "Independent",
+    subtitle: "FFT spectral visualization",
+    year: "2025",
+    summary:
+      "A browser-based audio analysis tool: live FFT spectral visualization, beat detection, and frequency-domain feature extraction.",
+    architecture:
+      "Web Audio API graph feeding an AnalyserNode. FFT bins mapped to a logarithmic frequency scale, smoothed with an exponential moving average. Beat detection via spectral-flux onset detection. Render loop decoupled from the audio thread, drawn on Canvas at 60fps.",
+    metrics: [
+      { label: "FFT",    value: "real-time" },
+      { label: "RENDER", value: "60fps" },
+      { label: "ONSET",  value: "spectral-flux" },
+    ],
+    stack: ["TypeScript", "Web Audio API", "Canvas", "DSP", "FFT"],
+    links: [{ label: "GITHUB", url: "https://github.com/data-is-spaghetti" }],
+  },
 ];
 
 // ── Section 0x02: TEMPORAL LATTICE (Experience worldline) ──
-// Ordered along the causal worldline. t = position parameter.
+// Deloitte lives HERE, not in projects.
 export const worldline = [
   {
     t: 0,
@@ -146,40 +164,40 @@ export const worldline = [
     org: "Deloitte U.S.I.",
     period: "JUL 2022 — PRESENT",
     event:
-      "Full-stack delivery across enterprise government platforms. API architecture, CI/CD ownership, technical lead and code reviewer for a team of junior engineers.",
+      "Full-stack delivery across enterprise government platforms (Oregon Dept. of Health, SNAP, TANF, Dept. of Education). Architected GraphQL + REST APIs on Spring Boot, microservices with circuit-breaker patterns and Redis caching, React/Angular frontends. 1M+ users, 99.9% uptime, sub-200ms responses. Owned CI/CD on AWS, led code review for 8 junior engineers.",
     branch: null,
   },
   {
     t: 2,
     role: "Independent Engineering",
-    org: "Open Source / Side Systems",
+    org: "WalletX · Caffèhop · CodeLens · Stellarcast",
     period: "2025 — PRESENT",
     event:
-      "Concurrent worldline: algorithmic trading platform, real-time audio analyzer, CodeLens, Stellarcast. Systems built to learn the domains.",
+      "Concurrent worldline of independent projects: a wealth-partitioning OS, a coffee-discovery platform, a multi-agent code review CLI, and a real-time astronomy overlay. Systems built to learn the domains and ship something real.",
     branch: "concurrent",
   },
 ];
 
-// awards — rendered as discrete events on the lattice
+// Awards — discrete events on the lattice
 export const events = [
-  { year: "2024", label: "Deloitte Applause Award", note: "highest peer recognition · $2M+ engagement" },
-  { year: "2023 · 2026", label: "Deloitte Spot Award ×2", note: "delivery quality · cross-team mentorship" },
-  { year: "2023", label: "National Hackathon Finalist", note: "top 5 of 300+ teams" },
+  { year: "2024",       label: "Deloitte Applause Award",     note: "highest peer recognition · $2M+ engagement" },
+  { year: "2023 · 2026", label: "Deloitte Spot Award ×2",      note: "delivery quality · cross-team mentorship" },
+  { year: "2023",       label: "National Hackathon Finalist", note: "top 5 of 300+ teams" },
 ];
 
-// ── Skills — mapped to a coordinate basis ──
+// ── Skills (rendered in 0x00 Main Engine) ──
 export const skillBasis = {
   LANGUAGES: ["Java", "TypeScript", "JavaScript", "Python", "C#", "SQL", "Go"],
-  BACKEND: ["Spring Boot", "Node.js", ".NET", "REST", "GraphQL", "Microservices", "Event-Driven", "System Design", "Distributed Systems"],
-  FRONTEND: ["React", "Next.js", "Angular", "Three.js / R3F", "WebGL", "Framer Motion"],
-  INFRA: ["PostgreSQL", "MongoDB", "Redis", "ElasticSearch", "AWS", "Docker", "Kubernetes", "CI/CD"],
-  PRACTICE: ["TDD", "API Design", "Code Review", "RAG Pipelines", "LLM Agents", "Observability"],
+  BACKEND:   ["Spring Boot", "Node.js", "Fastify", ".NET", "REST", "GraphQL", "Microservices", "Event-Driven", "Distributed Systems"],
+  FRONTEND:  ["React", "Next.js", "Angular", "Three.js / R3F", "WebGL", "Tailwind", "Framer Motion"],
+  INFRA:     ["PostgreSQL", "MongoDB", "Redis", "AWS", "Docker", "Kubernetes", "CI/CD"],
+  PRACTICE:  ["TDD", "API Design", "Code Review", "RAG", "LLM Agents", "Observability"],
 };
 
-// section registry — the coordinate map
+// Section registry — the coordinate map
 export const sections = [
-  { addr: "0x00", name: "MAIN ENGINE", sub: "core readout" },
-  { addr: "0x01", name: "PROOFS", sub: "implementations" },
+  { addr: "0x00", name: "MAIN ENGINE",      sub: "core readout" },
+  { addr: "0x01", name: "PROOFS",           sub: "implementations" },
   { addr: "0x02", name: "TEMPORAL LATTICE", sub: "worldline" },
   { addr: "0x03", name: "SIGNAL BROADCAST", sub: "contact" },
 ];

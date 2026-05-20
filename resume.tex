@@ -1,0 +1,209 @@
+% Manpreet Kaur - Resume
+% Compile with: pdflatex resume.tex
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=0.6in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+% colors
+\definecolor{primary}{HTML}{111111}
+\definecolor{accent}{HTML}{555555}
+\definecolor{rule}{HTML}{888888}
+
+% link styling
+\hypersetup{
+  colorlinks=true,
+  urlcolor=primary,
+  linkcolor=primary,
+}
+
+% section formatting - clean caps with rule
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{primary}}
+  {}{0em}{\MakeUppercase}[\vspace{2pt}\titlerule\vspace{4pt}]
+\titlespacing*{\section}{0pt}{12pt}{4pt}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{primary}}
+  {}{0em}{}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+% remove default indentation
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+% custom list
+\setlist[itemize]{
+  leftmargin=12pt,
+  itemsep=2pt,
+  parsep=0pt,
+  topsep=2pt,
+  label=\textcolor{rule}{\textbullet}
+}
+
+% job header: title on left, dates on right
+\newcommand{\jobheader}[4]{%
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    \textbf{#1} {\color{accent}\textbar{} #2} & {\color{accent}#3} \\
+    \textit{#4} & \\
+  \end{tabularx}\vspace{2pt}
+}
+
+% project header: title on left, year on right
+\newcommand{\projectheader}[3]{%
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    \textbf{#1} {\color{accent}\textbar{} #2} & {\color{accent}#3} \\
+  \end{tabularx}\vspace{2pt}
+}
+
+\begin{document}
+
+% =============== HEADER ===============
+\begin{center}
+  {\Huge\bfseries Manpreet Kaur} \\[4pt]
+  {\color{accent}Software Engineer} \\[6pt]
+  \small
+  Bengaluru, India \quad\textbar{}\quad
+  \href{mailto:kaur.exe@gmail.com}{kaur.exe@gmail.com} \quad\textbar{}\quad
+  +91 95697 80002 \quad\textbar{}\quad
+  \href{https://linkedin.com/in/kaurmanpreet013}{linkedin.com/in/kaurmanpreet013} \quad\textbar{}\quad
+  \href{https://github.com/data-is-spaghetti}{github.com/data-is-spaghetti}
+\end{center}
+
+\vspace{-4pt}
+
+% =============== SUMMARY ===============
+\section*{Summary}
+
+Software engineer with four years of experience designing and shipping
+large-scale distributed web platforms and APIs in production. End-to-end
+ownership across system design, deployment, observability, and on-call.
+Polyglot stack with hands-on work in Java, TypeScript, C\#, Python, and Go.
+Currently building independent projects across fintech, AI tooling, and
+spatial computing.
+
+% =============== EXPERIENCE ===============
+\section*{Experience}
+
+\jobheader{Software Engineer}{Deloitte U.S.I.}{Jul 2022 -- Present}{Technology Consulting -- Enterprise Government Platforms, Bengaluru}
+
+\begin{itemize}
+  \item Architected and delivered full-stack features across 12+ distributed
+        enterprise applications using Java, Spring Boot, React, Angular, and Node.js,
+        maintaining 99.9\% uptime and sub-200ms response times for 1M+ users
+        across US state government platforms (Oregon Dept. of Health, SNAP,
+        TANF, Dept. of Education).
+  \item Designed scalable GraphQL and REST APIs with Spring Boot, implementing
+        microservices with circuit-breaker patterns, Redis caching, and
+        event-driven integrations across 15+ external services including payment
+        gateways, CRM systems, and identity providers.
+  \item Led delivery of three React and Angular applications in six months: an
+        internal operations dashboard (200+ daily users), a client-facing claims
+        portal, and a reusable component library of 30+ components adopted by
+        four teams, cutting frontend build time by 35\%.
+  \item Owned CI/CD pipelines using GitHub Actions with TDD, automated
+        integration testing, and Docker-based deployments to AWS (EC2, S3,
+        Lambda), ensuring zero-downtime releases and full observability.
+  \item Engineered a Power Automate workflow automation pipeline applying OOP
+        design principles, eliminating 80+ hours of manual processing weekly
+        and delivering \$150,000 in annual cost savings.
+  \item Served as technical lead and code reviewer for eight junior engineers,
+        improving delivery velocity by 40\% and reducing production defects by 60\%.
+\end{itemize}
+
+\vspace{4pt}
+
+\jobheader{Integration Developer Intern}{Deloitte U.S.I.}{Jan 2022 -- Jun 2022}{Healthcare Technology, Bengaluru}
+
+\begin{itemize}
+  \item Built 20+ production Java-based HL7/XML healthcare data integration
+        interfaces using InterSystems HealthConnect; developed MOVEit
+        automation scripts improving data pipeline accuracy by 30\%.
+\end{itemize}
+
+% =============== PROJECTS ===============
+\section*{Projects}
+
+\projectheader{WalletX}{Wealth-Partitioning OS}{2025}
+
+A non-custodial financial OS that lets users architect every rupee across
+purpose-built partitions: cash, equity, crypto, hard assets, under one
+unified ledger. Built on a PERN + TypeScript stack chosen for ACID
+correctness (Postgres NUMERIC, Decimal.js) rather than convenience. Day-0
+architecture covers cash partitions, transfers, and a per-partition
+encryption-key security model.
+
+\textbf{Stack:} TypeScript, React, Fastify, PostgreSQL, Prisma, Redis, Zod
+
+\vspace{6pt}
+\projectheader{Caff\`ehop}{Coffee discovery and identity platform}{2025}
+
+A coffee-first discovery and identity platform: sign up, verify, and build
+a profile around the caf\'es you visit. Next.js 14 App Router frontend,
+Express plus MongoDB backend, email and phone OTP with refresh-token
+rotation. Hashed OTP storage with 10-minute TTL and httpOnly cookie sessions.
+
+\textbf{Stack:} Next.js 14, React 18, Node.js, Express, MongoDB, JWT, Tailwind
+
+\vspace{6pt}
+\projectheader{CodeLens}{Multi-agent code review CLI}{2025}
+
+A developer tool that runs code reviews through LLMs with a pluggable
+provider backend (Ollama, Gemini, Mistral) via a clean provider abstraction.
+RAG pipeline over codebase context with token-by-token SSE streaming,
+multi-agent orchestration (context agent plus review agent), single-line
+install with pre-push git hook. Published to npm.
+
+\textbf{Stack:} TypeScript, Node.js, REST APIs, RAG Pipelines, SSE, npm
+
+\vspace{6pt}
+\projectheader{Stellarcast}{Real-time astronomy overlay (Chrome extension)}{2025}
+
+A Chrome MV3 extension overlaying live astronomical data onto the browser.
+Service-worker pipeline syncs open APIs every 60 seconds. Renders 8K+ data
+points via instanced Three.js meshes at 60fps, using spatial hashing for
+sub-millisecond lookups.
+
+\textbf{Stack:} TypeScript, Chrome MV3, Service Workers, Three.js, WebGL
+
+% =============== SKILLS ===============
+\section*{Technical Skills}
+
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+  \textbf{Languages}      & Java, TypeScript, JavaScript, Python, C\#, SQL, Go \\
+  \textbf{Backend}        & Spring Boot, Node.js, Express, Fastify, .NET, REST, GraphQL, Microservices, Event-Driven Architecture, System Design, Distributed Systems \\
+  \textbf{Frontend}       & React, Next.js, Angular, Three.js / R3F, WebGL, Tailwind CSS, Framer Motion \\
+  \textbf{Data \& Infra}  & PostgreSQL, MongoDB, MySQL, Redis, ElasticSearch, AWS (EC2, S3, Lambda, RDS), Docker, Kubernetes, GitHub Actions, CI/CD \\
+  \textbf{AI \& Tooling}  & RAG Pipelines, LLM APIs (Ollama, Gemini), Multi-Agent Orchestration, Prompt Engineering \\
+  \textbf{Practices}      & TDD, API Design, Code Review, Observability, Technical Mentorship \\
+\end{tabularx}
+
+% =============== AWARDS ===============
+\section*{Awards \& Recognition}
+
+\begin{itemize}
+  \item \textbf{Deloitte Applause Award (2024)} - Highest peer-recognition award
+        at Deloitte, for technical leadership and measurable client impact on
+        a \$2M+ engagement renewal.
+  \item \textbf{Deloitte Spot Award (2023, 2026)} - Awarded twice for sustained
+        delivery quality, velocity, and cross-team mentorship.
+  \item \textbf{Deloitte Hackathon National Finalist (2023)} - Top 5 of 300+
+        teams. Presented an AI-powered contract review tool to senior partners.
+\end{itemize}
+
+% =============== EDUCATION ===============
+\section*{Education}
+
+\projectheader{B.E., Computer Science}{Thapar Institute of Engineering \& Technology}{2018 -- 2022}
+
+Coursework: Data Structures \& Algorithms, DBMS, Operating Systems,
+Computer Networks, Software Engineering, OOP. \\
+Head, MUDRA Society: led a 15-member team; tripled participation.
+
+\end{document}

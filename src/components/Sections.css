@@ -5,108 +5,138 @@
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* ── 0x00 MAIN ENGINE ── */
+/* ──────────── 0x00 MAIN ENGINE ──────────── */
+/*
+ * Centered horizontally, biased upward so the address line sits well
+ * below the HUD's top-left coordinate readout. Narrow max-width so the
+ * spec strip stays compact and never spans the full screen.
+ */
 .engine-panel {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: min(680px, 88vw);
+  /* tighter width — the cap stops the panel from sprawling */
+  width: min(620px, calc(100vw - 96px));
+  /* push down so the address line clears the top HUD on smaller screens */
+  margin-top: 32px;
   text-align: left;
 }
+
 .engine-addr {
-  margin-bottom: 24px;
+  margin-bottom: 18px;
+  /* slightly brighter than default mono-label dim grey */
+  color: #5a5a5a !important;
 }
+
 .engine-core {
-  margin-bottom: 32px;
+  margin-bottom: 26px;
 }
-.engine-role {
-  font-size: 12px;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: #ffb000;
-  margin-bottom: 14px;
-}
+
 .engine-name {
-  font-size: var(--t-3xl);
+  font-size: clamp(40px, 6vw, 60px);
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
+
+/* the typed core vector — humble status line, not a manifesto */
 .engine-vector {
-  font-size: var(--t-md);
+  font-size: 14px;
   color: #00ff66;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   min-height: 1.5em;
+  opacity: 0.8;
 }
+
 .engine-statement {
-  font-size: var(--t-base);
-  color: #b0b0b0;
-  max-width: 520px;
+  font-size: 14px;
+  color: #c0c0c0;
+  max-width: 540px;
   line-height: 1.7;
 }
 
+/* ── SPECS ── compact strip, not boastful blocks ──
+ * Smaller padding, smaller value text, more uniform with the rest of
+ * the page. The big chunky "4.0 yrs" was reading as boast; now it's a
+ * status readout.
+ */
 .engine-specs {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 24px;
 }
 .engine-spec {
   background: #000;
-  padding: 14px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 .spec-key {
   font-size: 9px;
-  letter-spacing: 0.2em;
-  color: #4a4a4a;
+  letter-spacing: 0.18em;
+  color: #5a5a5a;
 }
 .spec-value {
-  font-size: var(--t-lg);
-  font-weight: 700;
+  /* down from 22px to 14px — much less boastful */
+  font-size: 14px;
+  font-weight: 600;
   color: #ffffff;
+  letter-spacing: 0.02em;
 }
 .spec-note {
   font-size: 9px;
-  color: #4a4a4a;
+  color: #6a6a6a;
+  letter-spacing: 0.05em;
 }
 
+/* ── SKILLS ── higher contrast text against the manifold ──
+ * Previously #888 on near-black with a busy bg behind = unreadable.
+ * Bump items to #d0d0d0 and add a subtle row background so the strip
+ * stands out from the manifold without becoming a wall.
+ */
 .engine-skills {
-  border-left: 1px solid #ffb000;
-  padding-left: 16px;
-  margin-bottom: 28px;
+  border-left: 2px solid #ffb000;
+  padding: 8px 0 8px 14px;
+  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
+  background: rgba(0, 0, 0, 0.45);
 }
 .skill-basis {
   display: flex;
-  gap: 16px;
-  font-size: 10px;
+  gap: 14px;
+  font-size: 11px;
+  line-height: 1.4;
+  align-items: baseline;
 }
 .skill-basis-label {
   color: #ffb000;
-  letter-spacing: 0.15em;
-  width: 90px;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  width: 82px;
   flex-shrink: 0;
 }
 .skill-basis-items {
-  color: #888;
-  letter-spacing: 0.03em;
+  /* up from #888 → #d0d0d0 for genuine readability */
+  color: #d0d0d0;
+  letter-spacing: 0.02em;
 }
 
+/* ── RESUME button ── unchanged styling, now points at real PDF ── */
 .engine-resume {
   display: inline-block;
   font-size: 11px;
   letter-spacing: 0.15em;
   color: #000;
   background: #ffb000;
-  padding: 12px 22px;
+  padding: 11px 20px;
+  font-weight: 600;
   transition: background 0.2s, transform 0.2s;
 }
 .engine-resume:hover {
@@ -114,36 +144,43 @@
   transform: translateX(4px);
 }
 
-/* ── 0x03 SIGNAL BROADCAST ── */
+/* ──────────── 0x03 SIGNAL BROADCAST ──────────── */
 .signal-panel {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: min(620px, 90vw);
+  width: min(620px, calc(100vw - 96px));
+  margin-top: 24px;
 }
-.signal-addr { margin-bottom: 16px; }
+.signal-addr {
+  margin-bottom: 14px;
+  color: #5a5a5a !important;
+}
 .signal-title {
-  font-size: var(--t-2xl);
+  font-size: clamp(32px, 5vw, 44px);
   font-weight: 800;
   letter-spacing: -0.02em;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .terminal {
   border: 1px solid rgba(0, 255, 102, 0.3);
   background: rgba(0, 20, 8, 0.6);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 .terminal-history {
-  height: 180px;
+  height: 160px;
   overflow-y: auto;
-  padding: 14px;
+  padding: 12px 14px;
   font-size: 12px;
   line-height: 1.7;
 }
-.term-line { white-space: pre-wrap; word-break: break-word; }
+.term-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
 .term-sys { color: #4a8a5f; }
-.term-in { color: #ffffff; }
+.term-in  { color: #ffffff; }
 .term-out { color: #00ff66; }
 .term-err { color: #ff5555; }
 
@@ -152,7 +189,7 @@
   align-items: center;
   gap: 8px;
   border-top: 1px solid rgba(0, 255, 102, 0.2);
-  padding: 12px 14px;
+  padding: 10px 14px;
 }
 .terminal-prompt {
   font-size: 12px;
@@ -180,7 +217,7 @@
 }
 .signal-direct-link {
   background: #000;
-  padding: 12px 14px;
+  padding: 11px 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -188,11 +225,11 @@
   transition: background 0.2s;
 }
 .signal-direct-link:hover { background: #0a0a0a; }
-.sdl-label { color: #4a4a4a; letter-spacing: 0.15em; }
+.sdl-label  { color: #5a5a5a; letter-spacing: 0.15em; }
 .sdl-handle { color: #ffffff; }
 .signal-direct-link:hover .sdl-handle { color: #ffb000; }
 
-/* ── spatial section labels (0x01 / 0x02) ── */
+/* ──────────── spatial section labels (0x01 / 0x02) ──────────── */
 .spatial-label {
   left: 50%;
   bottom: 90px;
@@ -201,62 +238,59 @@
 }
 .spatial-hint {
   font-size: 11px;
-  color: #4a4a4a;
+  color: #5a5a5a;
   letter-spacing: 0.08em;
   margin-top: 6px;
 }
 
-/* ════════ 3D HTML OVERLAYS (node breakdowns, worldline events) ════════ */
+/* ════════ 3D HTML overlays (node breakdowns, worldline events) ════════ */
 .node-breakdown {
   width: 280px;
-  background: rgba(0, 0, 0, 0.92);
+  background: rgba(0, 0, 0, 0.94);
   border: 1px solid #ffb000;
-  padding: 16px;
+  padding: 14px;
   font-family: 'JetBrains Mono', monospace;
 }
 .node-breakdown-title {
   font-size: 14px;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 .node-breakdown-org {
   font-size: 9px;
   letter-spacing: 0.1em;
   color: #ffb000;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .node-breakdown-arch {
   font-size: 10px;
   line-height: 1.6;
-  color: #999;
-  margin-bottom: 12px;
+  color: #c0c0c0;
+  margin-bottom: 10px;
 }
 .node-breakdown-metrics {
   display: flex;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   flex-wrap: wrap;
 }
-.node-metric {
-  display: flex;
-  flex-direction: column;
-}
+.node-metric { display: flex; flex-direction: column; }
 .node-metric-label {
   font-size: 8px;
-  color: #4a4a4a;
+  color: #5a5a5a;
   letter-spacing: 0.1em;
 }
 .node-metric-value {
-  font-size: 12px;
+  font-size: 11px;
   color: #00ff66;
   font-weight: 700;
 }
 .node-breakdown-stack {
   font-size: 9px;
-  color: #555;
+  color: #888;
   border-top: 1px solid #2a2a2a;
-  padding-top: 8px;
+  padding-top: 7px;
   letter-spacing: 0.04em;
 }
 
@@ -287,10 +321,9 @@
 .worldline-desc {
   font-size: 10px;
   line-height: 1.55;
-  color: #888;
+  color: #b0b0b0;
 }
 
-/* award events */
 .award-event {
   width: 200px;
   text-align: right;
@@ -311,7 +344,7 @@
 }
 .award-note {
   font-size: 9px;
-  color: #666;
+  color: #888;
 }
 
 @media (max-width: 768px) {
@@ -319,5 +352,5 @@
   .signal-direct { grid-template-columns: 1fr; }
   .skill-basis { flex-direction: column; gap: 2px; }
   .skill-basis-label { width: auto; }
-  .engine-name { font-size: 40px; }
+  .engine-name { font-size: 36px; }
 }

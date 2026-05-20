@@ -7,11 +7,13 @@ import "./Sections.css";
 // ════════════════════════════════════════════════════════════════
 //  Section overlays
 //  0x00 MAIN ENGINE and 0x03 SIGNAL BROADCAST render as fixed HTML
-//  panels (crisp text, accessible forms). 0x01 and 0x02 live in 3D
-//  space (ProjectNodes / Worldline). Panels fade by proximity to T.
+//  panels. 0x01 and 0x02 live in 3D space.
 // ════════════════════════════════════════════════════════════════
 
 // ── 0x00 — MAIN ENGINE ──
+// Layout: name + statement up top, then spec strip + skills.
+// The redundant "SOFTWARE ENGINEER" label is gone (it lives in the
+// curtain, the section header, and the HUD identity stamp).
 function MainEngine({ active }) {
   const [typed, setTyped] = useState("");
   const full = profile.coreVector;
@@ -40,10 +42,11 @@ function MainEngine({ active }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: EASE.reindex }}
         >
-          <div className="engine-addr mono-label">SECTION 0x00 — MAIN ENGINE</div>
+          <div className="engine-addr mono-label">
+            SECTION 0x00 · MAIN ENGINE
+          </div>
 
           <div className="engine-core">
-            <div className="engine-role">{profile.role}</div>
             <h1 className="engine-name">{profile.name}</h1>
             <div className="engine-vector cursor-blink">{typed}</div>
             <p className="engine-statement">{engine.statement}</p>
@@ -86,7 +89,7 @@ function MainEngine({ active }) {
 function SignalBroadcast({ active }) {
   const [line, setLine] = useState("");
   const [history, setHistory] = useState([
-    { type: "sys", text: "SIGNAL BROADCAST TERMINAL — 0x03" },
+    { type: "sys", text: "SIGNAL BROADCAST TERMINAL · 0x03" },
     { type: "sys", text: "type 'help' for available channels" },
   ]);
   const inputRef = useRef();
@@ -109,14 +112,17 @@ function SignalBroadcast({ active }) {
     const out = [{ type: "in", text: `> ${raw}` }];
 
     if (cmd === "help") {
-      out.push({ type: "sys", text: "channels: " + socials.map((s) => s.label.toLowerCase()).join(", ") });
+      out.push({
+        type: "sys",
+        text: "channels: " + socials.map((s) => s.label.toLowerCase()).join(", "),
+      });
       out.push({ type: "sys", text: "commands: help, list, clear, whoami" });
     } else if (cmd === "list") {
       socials.forEach((s) =>
         out.push({ type: "out", text: `${s.label.padEnd(10)} ${s.handle}` })
       );
     } else if (cmd === "whoami") {
-      out.push({ type: "out", text: `${profile.name} — ${profile.role}` });
+      out.push({ type: "out", text: `${profile.name} · ${profile.role}` });
       out.push({ type: "out", text: profile.origin });
     } else if (cmd === "clear") {
       setHistory([]);
@@ -148,7 +154,7 @@ function SignalBroadcast({ active }) {
           transition={{ duration: 0.4, ease: EASE.reindex }}
         >
           <div className="signal-addr mono-label">
-            SECTION 0x03 — SIGNAL BROADCAST
+            SECTION 0x03 · SIGNAL BROADCAST
           </div>
           <h2 className="signal-title">Open a channel.</h2>
 
@@ -172,12 +178,11 @@ function SignalBroadcast({ active }) {
                 }}
                 spellCheck={false}
                 autoComplete="off"
-                placeholder="type a channel name…"
+                placeholder="type a channel name..."
               />
             </div>
           </div>
 
-          {/* fallback direct links — always reachable, not everyone types */}
           <div className="signal-direct">
             {socials.map((s) => (
               <a
@@ -198,8 +203,6 @@ function SignalBroadcast({ active }) {
   );
 }
 
-// section labels for 0x01 / 0x02 — small contextual headers,
-// since the actual content is in 3D space
 function SpatialLabel({ active, addr, name, hint }) {
   return (
     <AnimatePresence>
@@ -211,7 +214,7 @@ function SpatialLabel({ active, addr, name, hint }) {
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.4, ease: EASE.transform }}
         >
-          <div className="mono-label">{addr} — {name}</div>
+          <div className="mono-label">{addr} · {name}</div>
           <div className="spatial-hint">{hint}</div>
         </motion.div>
       )}

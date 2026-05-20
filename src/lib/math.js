@@ -77,3 +77,37 @@ export function fmtCoord(n) {
   const sign = n >= 0 ? "+" : "-";
   return sign + Math.abs(n).toFixed(2);
 }
+
+// ════════════════════════════════════════════════════════════════
+//  Fibonacci sphere layout — N points distributed evenly on a sphere.
+//
+//  Why: when you naively place points by lat/lon, they cluster at the
+//  poles. The Fibonacci spiral uses the golden angle to walk around the
+//  sphere in a way that no two points ever land close together.
+//
+//  Used by NASA for satellite placement, by R3F demos for particles, and
+//  here for project nodes — so adding more projects just redistributes,
+//  never overflows the viewport.
+//
+//  Returns an array of [x, y, z] tuples on a sphere of given radius.
+//  We compress the Z axis a bit so projects don't sit too far behind
+//  the camera frustum.
+// ════════════════════════════════════════════════════════════════
+export function fibonacciSphere(count, radius = 1.6, zSquash = 0.7) {
+  if (count <= 0) return [];
+  const points = [];
+  const phi = Math.PI * (3 - Math.sqrt(5)); // golden angle in radians
+
+  for (let i = 0; i < count; i++) {
+    // y goes from +1 to -1 evenly
+    const y = 1 - (i / Math.max(1, count - 1)) * 2;
+    const r = Math.sqrt(1 - y * y); // radius at this y slice
+    const theta = phi * i;
+
+    const x = Math.cos(theta) * r;
+    const z = Math.sin(theta) * r;
+
+    points.push([x * radius, y * radius, z * radius * zSquash]);
+  }
+  return points;
+}
