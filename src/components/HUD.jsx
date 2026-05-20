@@ -82,21 +82,24 @@ export default function HUD({ T, sectionIndex, viewport, jumpTo }) {
         transition={{ duration: 0.5, delay: 0.1, ease: EASE.transform }}
       >
         <div className="hud-registry-label">COORDINATE REGISTRY</div>
-        {sections.map((s, i) => (
-          <button
-            key={s.addr}
-            className={`hud-registry-item ${
-              sectionIndex === i ? "active" : ""
-            }`}
-            onClick={() => jumpTo(i)}
-          >
-            <span className="reg-addr">{s.addr}</span>
-            <span className="reg-name">{s.name}</span>
-            <span className="reg-marker">
-              {sectionIndex === i ? "◆" : "◇"}
-            </span>
-          </button>
-        ))}
+       {sections.map((s, i) => (
+  <button
+    key={s.addr}
+    className={`hud-registry-item ${
+      sectionIndex === i ? "active" : ""
+    }`}
+    onClick={() => jumpTo(i)}
+  >
+    <span className="reg-addr">{s.addr}</span>
+    <span className="reg-label-stack">
+      <span className="reg-label">{s.label}</span>
+      <span className="reg-atmos">{s.atmos}</span>
+    </span>
+    <span className="reg-marker">
+      {sectionIndex === i ? "◆" : "◇"}
+    </span>
+  </button>
+))}
       </motion.div>
 
       {/* BOTTOM — temporal scrubber */}

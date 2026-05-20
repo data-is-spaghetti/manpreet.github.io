@@ -15,12 +15,16 @@ import { SECTION_ANCHORS } from "./CameraRig";
 
 const ANCHOR = SECTION_ANCHORS[2]; // 0x02 TEMPORAL LATTICE
 
+
 // the worldline runs along Y (time axis), centered on the anchor
-const T_SPACING = 2.4;
+const T_SPACING = 1.3;          
+const BRANCH_OFFSET = 1.4;      
+const AWARD_OFFSET = -2.4;      
+const Y_TOP = 2.8;              
 
 function eventPos(t, branch) {
-  const x = ANCHOR[0] + (branch === "concurrent" ? 2.2 : 0);
-  const y = ANCHOR[1] + 3 - t * T_SPACING;
+  const x = ANCHOR[0] + (branch === "concurrent" ? BRANCH_OFFSET : 0);
+  const y = ANCHOR[1] + Y_TOP - t * T_SPACING;   // uses new top constant
   const z = ANCHOR[2] - 6;
   return [x, y, z];
 }
@@ -141,9 +145,9 @@ export default function Worldline({ visible }) {
 
       {/* award events — small markers off to the side */}
       {events.map((ev, i) => {
-        const y = ANCHOR[1] + 1.5 - i * 1.4;
-        return (
-          <group key={ev.label} position={[ANCHOR[0] - 3.4, y, ANCHOR[2] - 6]}>
+         const y = ANCHOR[1] + Y_TOP - 0.8 - i * 1.6;
+         return (
+    <group key={ev.label} position={[ANCHOR[0] + AWARD_OFFSET, y, ANCHOR[2] - 6]}>
             <mesh rotation={[0, 0, Math.PI / 4]}>
               <planeGeometry args={[0.14, 0.14]} />
               <meshBasicMaterial color="#ffb000" side={THREE.DoubleSide} />

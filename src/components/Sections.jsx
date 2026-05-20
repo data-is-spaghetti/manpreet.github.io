@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { engine, profile, socials, skillBasis } from "../data/portfolio";
 import { EASE } from "../lib/math";
+import WorldlineOverlay from "./WorldlineOverlay";
 import "./Sections.css";
 
 // ════════════════════════════════════════════════════════════════
@@ -232,12 +233,7 @@ export default function Sections({ T, sectionIndex }) {
         name="PROOFS & IMPLEMENTATIONS"
         hint="hover a node to project its architecture · W/A/S/D to traverse"
       />
-      <SpatialLabel
-        active={sectionIndex === 2 && T > 1.5 && T < 2.5}
-        addr="0x02"
-        name="TEMPORAL LATTICE"
-        hint="the causal worldline · green branch = concurrent engineering"
-      />
+      <WorldlineOverlay active={sectionIndex === 2 && T > 1.5 && T < 2.5} />
       <SignalBroadcast active={sectionIndex === 3 && T > 2.5} />
     </>
   );
