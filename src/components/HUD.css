@@ -53,58 +53,34 @@
 .hud-registry-label {
   font-size: 9px;
   letter-spacing: 0.25em;
-  color: #8a8a8a;   /* up from #4a4a4a — visible */
-  margin-bottom: 14px;
+  color: #4a4a4a;
+  margin-bottom: 12px;
 }
 .hud-registry-item {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
-  padding: 7px 0;          /* a hair more breathing room per row */
+  padding: 5px 0;
   font-family: inherit;
   font-size: 11px;
   letter-spacing: 0.08em;
-  /* up from #4a4a4a (invisible) to #b0b0b0 (clearly readable, still secondary) */
-  color: #b0b0b0;
+  color: #4a4a4a;
   transition: color 0.2s, transform 0.2s;
   text-align: left;
-  cursor: pointer;
 }
 .hud-registry-item:hover {
   color: #ffffff;
   transform: translateX(-3px);
 }
 .hud-registry-item.active { color: #ffb000; }
-
 .reg-addr {
   color: inherit;
-  opacity: 0.55;
+  opacity: 0.7;
   width: 36px;
-  flex-shrink: 0;
 }
-
-.reg-label-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  flex: 1;
-  min-width: 0;
-}
-.reg-label {
-  font-weight: 600;
-  letter-spacing: 0.12em;
-
-}
-.reg-atmos {
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  color: currentColor;
-  opacity: 0.45;
-  text-transform: lowercase;
-}
-
-.reg-marker { font-size: 9px; flex-shrink: 0; }
+.reg-name { flex: 1; }
+.reg-marker { font-size: 9px; }
 
 /* ── BOTTOM — temporal scrubber ── */
 .hud-bottom {

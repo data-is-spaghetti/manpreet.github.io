@@ -196,8 +196,8 @@ export const skillBasis = {
 
 // Section registry — the coordinate map
 export const sections = [
-  { addr: "0x00", label: "ABOUT",      atmos: "main engine" },
-  { addr: "0x01", label: "PROJECTS",   atmos: "proofs" },
-  { addr: "0x02", label: "EXPERIENCE", atmos: "temporal lattice" },
-  { addr: "0x03", label: "CONTACT",    atmos: "signal broadcast" },
+  { addr: "0x00", name: "MAIN ENGINE",      sub: "core readout" },
+  { addr: "0x01", name: "PROOFS",           sub: "implementations" },
+  { addr: "0x02", name: "TEMPORAL LATTICE", sub: "worldline" },
+  { addr: "0x03", name: "SIGNAL BROADCAST", sub: "contact" },
 ];

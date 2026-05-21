@@ -5,6 +5,7 @@ import HUD from "./components/HUD";
 import Sections from "./components/Sections";
 import BootSequence from "./components/BootSequence";
 import Fallback from "./components/Fallback";
+import MobilePortfolio from "./components/MobilePortfolio";
 import { useSpacetimeNav } from "./hooks/useSpacetimeNav";
 import { useCursor } from "./hooks/useCursor";
 
@@ -15,6 +16,12 @@ import { useCursor } from "./hooks/useCursor";
 //    2. UI layer — HUD, section overlays
 //    3. Boot sequence — diegetic intro
 //  Navigation is spatial (useSpacetimeNav), cursor drives lensing.
+//
+//  Mobile (<768px): bypasses 3D entirely → MobilePortfolio.
+//  Why checked BEFORE hooks: React's Rules of Hooks require hooks
+//  to be called unconditionally. The mobile check is a plain JS
+//  expression (not a hook), so it can safely gate the return value.
+//  The hooks below still run on mobile — they're just not used.
 // ════════════════════════════════════════════════════════════════
 
 // quick WebGL capability probe
@@ -30,14 +37,27 @@ function detectWebGL() {
   }
 }
 
+// mobile detection — checked once at load, not reactive.
+// If someone rotates from portrait to landscape mid-session, they'd
+// need to refresh. Acceptable tradeoff — avoids complex resize logic.
+const isMobile = window.innerWidth < 768;
+
 export default function App() {
   const hasWebGL = useMemo(detectWebGL, []);
   const [booted, setBooted] = useState(false);
 
+  // hooks must always be called — Rules of Hooks.
+  // useCursor and useSpacetimeNav are no-ops on mobile since
+  // MobilePortfolio doesn't consume them, but they must still run.
   const cursor = useCursor();
   const { T, sectionIndex, viewport, jumpTo } = useSpacetimeNav();
 
-  // graceful 2D fallback for no-WebGL environments
+  // mobile: skip 3D entirely, render the purpose-built 2D layout
+  if (isMobile) {
+    return <MobilePortfolio />;
+  }
+
+  // no WebGL on desktop: render the plain 2D fallback
   if (!hasWebGL) {
     return <Fallback />;
   }

@@ -1,0 +1,453 @@
+/* ════════════════════════════════════════════════════════════════
+   MobilePortfolio.css
+   
+   Key principle: this component renders as a sibling to the Canvas,
+   not inside it. It takes the full viewport and enables scrolling —
+   overriding the body's overflow:hidden that exists for desktop.
+   ════════════════════════════════════════════════════════════════ */
+
+/* mob-root is the scroll container.
+   The body has overflow:hidden (for desktop 3D navigation).
+   We can't change the body without breaking desktop.
+   Instead, mob-root takes the full viewport and scrolls itself.
+   This is the key architectural decision for mobile. */
+.mob-root {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;       /* THIS is what makes mobile scrollable */
+  overflow-x: hidden;
+  background: #000;
+  color: var(--ink, #ece4e6);
+  font-family: 'JetBrains Mono', monospace;
+  -webkit-overflow-scrolling: touch; /* smooth momentum scroll on iOS */
+  z-index: 50;            /* sits above the canvas which is z-index:0 */
+}
+
+/* subtle grain overlay — same as desktop, consistency */
+.mob-root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+}
+
+/* ── HEADER ── */
+.mob-header {
+  padding: 48px 24px 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mob-addr-small {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: #ffb000;
+  margin-bottom: 16px;
+}
+
+.mob-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(36px, 10vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.mob-role {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #ffb000;
+  margin-bottom: 16px;
+}
+
+.mob-statement {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #00ff66;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.mob-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: #6a6a6a;
+  letter-spacing: 0.08em;
+  margin-bottom: 28px;
+}
+
+.mob-dot { color: #3a3a3a; }
+.mob-status { color: #ffb000; }
+
+/* Resume button — 44px tall minimum (touch target standard) */
+.mob-resume-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 20px;
+  background: #ffb000;
+  color: #000;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mob-resume-btn:active {
+  background: #ffffff;
+  transform: scale(0.98);
+}
+
+/* ── SECTIONS ── */
+.mob-section {
+  padding: 48px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mob-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 176, 0, 0.2);
+}
+
+.mob-addr {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #ffb000;
+  opacity: 0.7;
+}
+
+.mob-section-label {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: #ffb000;
+  font-weight: 600;
+}
+
+/* ── SKILLS ── */
+.mob-skill-row {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mob-skill-group {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #ffb000;
+  margin-bottom: 10px;
+}
+
+.mob-skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.mob-tag {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: #c0c0c0;
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ── PROJECTS ── */
+.mob-project {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* top accent line on each card */
+.mob-project::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, #ffb000, transparent);
+}
+
+.mob-project-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.mob-project-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  margin-bottom: 3px;
+}
+
+.mob-project-sub {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #ffb000;
+  text-transform: uppercase;
+}
+
+.mob-project-year {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #6a6a6a;
+  white-space: nowrap;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.mob-project-desc {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #b0b0b0;
+  margin-bottom: 16px;
+}
+
+.mob-project-metrics {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mob-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mob-metric-label {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: #6a6a6a;
+}
+
+.mob-metric-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: #00ff66;
+}
+
+.mob-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.mob-project-links {
+  display: flex;
+  gap: 12px;
+}
+
+/* link buttons — 44px touch target */
+.mob-link-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 176, 0, 0.4);
+  color: #ffb000;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mob-link-btn:active { background: rgba(255, 176, 0, 0.1); }
+
+/* ── EXPERIENCE TIMELINE ── */
+.mob-timeline {
+  display: flex;
+  flex-direction: column;
+  padding-left: 16px;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 36px;
+}
+
+.mob-event {
+  position: relative;
+  padding: 0 0 28px 24px;
+}
+
+/* the marker dot on the timeline spine */
+.mob-event-marker {
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.mob-event.mob-branch .mob-event-marker {
+  background: #00ff66;
+  border-color: #00ff66;
+  box-shadow: 0 0 8px rgba(0, 255, 102, 0.5);
+}
+
+.mob-event-period {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #ffb000;
+  margin-bottom: 4px;
+}
+
+.mob-event-role {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 3px;
+}
+
+.mob-event-org {
+  font-size: 11px;
+  color: #00ff66;
+  margin-bottom: 8px;
+}
+
+.mob-event.mob-branch .mob-event-org {
+  font-weight: 600;
+}
+
+.mob-event-desc {
+  font-size: 11px;
+  line-height: 1.65;
+  color: #b0b0b0;
+}
+
+/* ── AWARDS ── */
+.mob-awards {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 24px;
+}
+
+.mob-awards-label {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: #6a6a6a;
+  margin-bottom: 16px;
+}
+
+.mob-award {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.mob-award-year {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #ffb000;
+  white-space: nowrap;
+  padding-top: 2px;
+  flex-shrink: 0;
+  width: 64px;
+}
+
+.mob-award-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 3px;
+}
+
+.mob-award-note {
+  font-size: 10px;
+  line-height: 1.55;
+  color: #888;
+}
+
+/* ── CONTACT ── */
+.mob-contact-note {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #b0b0b0;
+  margin-bottom: 24px;
+}
+
+.mob-socials {
+  display: flex;
+  flex-direction: column;
+}
+
+/* social links — full-width, 52px tall for easy tapping */
+.mob-social-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+  color: #ffffff;
+  transition: padding 0.3s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mob-social-link:first-child { border-top: 1px solid rgba(255, 255, 255, 0.06); }
+.mob-social-link:active { padding-left: 8px; }
+
+.mob-social-label {
+  font-size: 14px;
+  font-style: italic;
+  font-family: 'JetBrains Mono', monospace;
+  color: #ffffff;
+}
+
+.mob-social-handle {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #6a6a6a;
+}
+
+/* ── FOOTER ── */
+.mob-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 32px 24px 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #3a3a3a;
+}
+
+@media (max-width: 390px) {
+  .mob-header,
+  .mob-section { padding-left: 18px; padding-right: 18px; }
+  .mob-name { font-size: 30px; }
+  .mob-project { padding: 18px; }
+}
