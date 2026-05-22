@@ -51,9 +51,9 @@
   backdrop-filter: blur(2px);
 }
 .hud-registry-label {
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.25em;
-  color: #777777;
+  color: #cacaca;
   margin-bottom: 12px;
 }
 .hud-registry-item {
