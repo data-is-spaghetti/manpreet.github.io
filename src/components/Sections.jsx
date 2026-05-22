@@ -78,7 +78,7 @@ function MainEngine({ active }) {
             target="_blank"
             rel="noreferrer"
           >
-            ↓ DOWNLOAD RÉSUMÉ [PDF]
+            ↓ DOWNLOAD RÉSUMÉ [DOC]
           </a>
         </motion.div>
       )}

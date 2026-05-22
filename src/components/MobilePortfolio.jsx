@@ -92,7 +92,7 @@ export default function MobilePortfolio() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
         >
-          ↓ Download Résumé
+          ↓ Download Résumé [DOC]
         </motion.a>
       </header>
 

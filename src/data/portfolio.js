@@ -14,7 +14,7 @@ export const profile = {
   coreVector: "// shipping, learning, repeat.",
   location: "Bengaluru, IN",
   origin: "12.9716°N, 77.5946°E",
-  resumePath: "Manpreet_Kaur_Resume.pdf",
+  resumePath: "Manpreet_Kaur_Resume.docx",
 };
 
 export const socials = [
