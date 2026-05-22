@@ -22,7 +22,7 @@
   line-height: 1.9;
 }
 .hud-key {
-  color: #4a4a4a;
+  color: #cacaca;
   letter-spacing: 0.15em;
 }
 .hud-val {
@@ -53,7 +53,7 @@
 .hud-registry-label {
   font-size: 9px;
   letter-spacing: 0.25em;
-  color: #4a4a4a;
+  color: #777777;
   margin-bottom: 12px;
 }
 .hud-registry-item {
@@ -65,7 +65,7 @@
   font-family: inherit;
   font-size: 11px;
   letter-spacing: 0.08em;
-  color: #4a4a4a;
+  color: #888888;
   transition: color 0.2s, transform 0.2s;
   text-align: left;
 }
@@ -124,7 +124,7 @@
 .scrubber-node-dot {
   width: 8px;
   height: 8px;
-  border: 1px solid #4a4a4a;
+  border: 1px solid #666666;
   background: #000;
   transform: rotate(45deg);
   transition: all 0.2s;
@@ -139,7 +139,7 @@
   top: 12px;
   font-size: 8px;
   letter-spacing: 0.1em;
-  color: #4a4a4a;
+  color: #888888;
   white-space: nowrap;
 }
 .scrubber-node.active .scrubber-node-label { color: #ffb000; }
@@ -147,7 +147,7 @@
 .hud-hint {
   font-size: 9px;
   letter-spacing: 0.12em;
-  color: #2a2a2a;
+  color: #666666;
   white-space: nowrap;
 }
 
@@ -157,7 +157,7 @@
   left: 24px;
   font-size: 10px;
   letter-spacing: 0.15em;
-  color: #2a2a2a;
+  color: #555555;
 }
 
 @media (max-width: 920px) {

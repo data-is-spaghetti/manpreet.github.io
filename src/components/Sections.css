@@ -24,8 +24,7 @@
 
 .engine-addr {
   margin-bottom: 18px;
-  /* slightly brighter than default mono-label dim grey */
-  color: #5a5a5a !important;
+  color: #cacaca!important;
 }
 
 .engine-core {
@@ -79,7 +78,7 @@
 .spec-key {
   font-size: 9px;
   letter-spacing: 0.18em;
-  color: #5a5a5a;
+  color: #888888;
 }
 .spec-value {
   /* down from 22px to 14px — much less boastful */
@@ -90,7 +89,7 @@
 }
 .spec-note {
   font-size: 9px;
-  color: #6a6a6a;
+  color: #888888;
   letter-spacing: 0.05em;
 }
 
@@ -154,7 +153,7 @@
 }
 .signal-addr {
   margin-bottom: 14px;
-  color: #5a5a5a !important;
+  color: #888888 !important;
 }
 .signal-title {
   font-size: clamp(32px, 5vw, 44px);
@@ -225,7 +224,7 @@
   transition: background 0.2s;
 }
 .signal-direct-link:hover { background: #0a0a0a; }
-.sdl-label  { color: #5a5a5a; letter-spacing: 0.15em; }
+.sdl-label  { color: #888888; letter-spacing: 0.15em; }
 .sdl-handle { color: #ffffff; }
 .signal-direct-link:hover .sdl-handle { color: #ffb000; }
 
@@ -238,7 +237,7 @@
 }
 .spatial-hint {
   font-size: 11px;
-  color: #5a5a5a;
+  color: #888888;
   letter-spacing: 0.08em;
   margin-top: 6px;
 }
@@ -278,7 +277,7 @@
 .node-metric { display: flex; flex-direction: column; }
 .node-metric-label {
   font-size: 8px;
-  color: #5a5a5a;
+  color: #888888;
   letter-spacing: 0.1em;
 }
 .node-metric-value {
@@ -288,8 +287,8 @@
 }
 .node-breakdown-stack {
   font-size: 9px;
-  color: #888;
-  border-top: 1px solid #2a2a2a;
+  color: #aaaaaa;
+  border-top: 1px solid #333333;
   padding-top: 7px;
   letter-spacing: 0.04em;
 }
@@ -344,7 +343,7 @@
 }
 .award-note {
   font-size: 9px;
-  color: #888;
+  color: #aaaaaa;
 }
 
 @media (max-width: 768px) {

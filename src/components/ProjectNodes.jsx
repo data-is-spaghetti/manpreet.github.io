@@ -124,7 +124,7 @@ function ProjectNode({ project, index, position, onHover, isActive, dimmed }) {
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "10px",
             letterSpacing: "0.1em",
-            color: isActive ? "#ffb000" : "#4a4a4a",
+            color: isActive ? "#ffb000" : "#cacaca",
             whiteSpace: "nowrap",
             transition: "color 0.3s",
             textShadow: "0 0 8px #000",
