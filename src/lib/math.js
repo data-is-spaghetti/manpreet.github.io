@@ -93,7 +93,7 @@ export function fmtCoord(n) {
 //  We compress the Z axis a bit so projects don't sit too far behind
 //  the camera frustum.
 // ════════════════════════════════════════════════════════════════
-export function fibonacciSphere(count, radius = 1.6, zSquash = 0.7) {
+export function fibonacciSphere(count, radius = 1.6, zSquash = 0.7, ySquash = 1.0) {
   if (count <= 0) return [];
   const points = [];
   const phi = Math.PI * (3 - Math.sqrt(5)); // golden angle in radians
@@ -107,7 +107,7 @@ export function fibonacciSphere(count, radius = 1.6, zSquash = 0.7) {
     const x = Math.cos(theta) * r;
     const z = Math.sin(theta) * r;
 
-    points.push([x * radius, y * radius, z * radius * zSquash]);
+    points.push([x * radius, y * radius * ySquash, z * radius * zSquash]);
   }
   return points;
 }

@@ -21,9 +21,10 @@ const ANCHOR = SECTION_ANCHORS[1]; // 0x01 PROOFS anchor
 
 // Layout tuning — keep these in one place so the whole grid can be
 // rebalanced from a single edit when the project list grows.
-const CLUSTER_RADIUS = 2.2;   // spread of the project cluster
-const NODE_SIZE      = 0.26;  // octahedron size (smaller now)
-const Z_SQUASH       = 0.6;   // flatten depth so nothing sits too far back
+const CLUSTER_RADIUS = 2.0;   // spread of the project cluster
+const NODE_SIZE      = 0.26;  // octahedron size
+const Z_SQUASH       = 0.55;  // flatten depth so nothing sits too far back
+const Y_SQUASH       = 0.65;  // compress vertical so no node escapes the viewport
 
 function hexId(i) {
   return `0x01.${String.fromCharCode(65 + i)}`; // 0x01.A, 0x01.B, ...
@@ -172,7 +173,7 @@ export default function ProjectNodes({ visible }) {
   // changes (e.g. you add one), this recomputes — but only on count change,
   // not on hover state changes.
   const positions = useMemo(
-    () => fibonacciSphere(projects.length, CLUSTER_RADIUS, Z_SQUASH),
+    () => fibonacciSphere(projects.length, CLUSTER_RADIUS, Z_SQUASH, Y_SQUASH),
     []
   );
 

@@ -30,9 +30,9 @@ export const engine = {
     "I design and ship full-stack systems: APIs, distributed services, and the interfaces on top of them.",
   // Smaller, factual readouts. Less "boastful spec sheet", more "git status".
   // The big chunky numbers are dialed down; the notes carry the real info.
-  specs: [
+    specs: [
     { key: "EXP",    value: "4y",        note: "production" },
-    { key: "STACK",  value: "ts · java", note: "+ py, c#, go" },
+    { key: "STACK",  value: "ts · c++", note: "+ py, c#, go" },
     { key: "FOCUS",  value: "distrib.",  note: "systems · APIs" },
     { key: "STATUS", value: "shipping",  note: "open to roles" },
   ],
@@ -155,7 +155,7 @@ export const worldline = [
     org: "Deloitte U.S.I.",
     period: "JAN 2022 — JUN 2022",
     event:
-      "Built 20+ production Java HL7/XML healthcare data integration interfaces on InterSystems HealthConnect.",
+      "Built 20+ production C++-based HL7/XML healthcare data integration interfaces on InterSystems HealthConnect.",
     branch: null,
   },
   {
@@ -164,7 +164,7 @@ export const worldline = [
     org: "Deloitte U.S.I.",
     period: "JUL 2022 — PRESENT",
     event:
-      "Full-stack delivery across enterprise government platforms (Oregon Dept. of Health, SNAP, TANF, Dept. of Education). Architected GraphQL + REST APIs on Spring Boot, microservices with circuit-breaker patterns and Redis caching, React/Angular frontends. 1M+ users, 99.9% uptime, sub-200ms responses. Owned CI/CD on AWS, led code review for 8 junior engineers.",
+      "Full-stack delivery across enterprise government platforms (Oregon Dept. of Health, SNAP, TANF, Dept. of Education). Architected GraphQL + REST APIs, microservices with circuit-breaker patterns and Redis caching, React/Angular frontends. 1M+ users, 99.9% uptime, sub-200ms responses. Owned CI/CD on AWS, led code review for 8 junior engineers.",
     branch: null,
   },
   {
@@ -187,8 +187,8 @@ export const events = [
 
 // ── Skills (rendered in 0x00 Main Engine) ──
 export const skillBasis = {
-  LANGUAGES: ["Java", "TypeScript", "JavaScript", "Python", "C#", "SQL", "Go"],
-  BACKEND:   ["Spring Boot", "Node.js", "Fastify", ".NET", "REST", "GraphQL", "Microservices", "Event-Driven", "Distributed Systems"],
+  LANGUAGES: ["C++", "TypeScript", "JavaScript", "Python", "C#", "SQL", "Go"],
+  BACKEND:   ["Node.js", "Fastify", ".NET", "REST", "GraphQL", "Microservices", "Event-Driven", "Distributed Systems"],
   FRONTEND:  ["React", "Next.js", "Angular", "Three.js / R3F", "WebGL", "Tailwind", "Framer Motion"],
   INFRA:     ["PostgreSQL", "MongoDB", "Redis", "AWS", "Docker", "Kubernetes", "CI/CD"],
   PRACTICE:  ["TDD", "API Design", "Code Review", "RAG", "LLM Agents", "Observability"],
@@ -196,8 +196,8 @@ export const skillBasis = {
 
 // Section registry — the coordinate map
 export const sections = [
-  { addr: "0x00", name: "MAIN ENGINE",      sub: "core readout" },
-  { addr: "0x01", name: "PROOFS",           sub: "implementations" },
-  { addr: "0x02", name: "TEMPORAL LATTICE", sub: "worldline" },
-  { addr: "0x03", name: "SIGNAL BROADCAST", sub: "contact" },
+  { addr: "0x00", label: "ABOUT",      atmos: "main engine" },
+  { addr: "0x01", label: "PROJECTS",   atmos: "proofs" },
+  { addr: "0x02", label: "EXPERIENCE", atmos: "temporal lattice" },
+  { addr: "0x03", label: "CONTACT",    atmos: "signal broadcast" },
 ];
