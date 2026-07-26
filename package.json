@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://data-is-spaghetti.github.io/manpreet.github.io",
+  "homepage": "https://thefireflysparkle.github.io/manpreet.github.io",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

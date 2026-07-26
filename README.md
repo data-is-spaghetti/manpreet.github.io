@@ -1,6 +1,6 @@
 # Manpreet Kaur — Portfolio
 
-[Live site](https://data-is-spaghetti.github.io/manpreet.github.io/)
+[Live site](https://thefireflysparkle.github.io/manpreet.github.io/)
 
 A personal portfolio rendered as a navigable coordinate system.
 Built with React, React Three Fiber, and Framer Motion.

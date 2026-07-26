@@ -18,7 +18,7 @@ export const profile = {
 };
 
 export const socials = [
-  { label: "GITHUB",   handle: "data-is-spaghetti",  url: "https://github.com/data-is-spaghetti" },
+  { label: "GITHUB",   handle: "thefireflysparkle",  url: "https://github.com/thefireflysparkle" },
   { label: "LINKEDIN", handle: "kaurmanpreet013",    url: "https://www.linkedin.com/in/kaurmanpreet013/" },
   { label: "EMAIL",    handle: "kaur.exe@gmail.com", url: "mailto:kaur.exe@gmail.com" },
   { label: "SUBSTACK", handle: "thefireflysparkle",  url: "https://substack.com/@thefireflysparkle" },
@@ -57,7 +57,7 @@ export const projects = [
       { label: "ACID",       value: "strict" },
     ],
     stack: ["TypeScript", "React", "Fastify", "PostgreSQL", "Prisma", "Redis", "Zod"],
-    links: [{ label: "GITHUB", url: "https://github.com/data-is-spaghetti" }],
+    links: [{ label: "GITHUB", url: "https://github.com/thefireflysparkle" }],
   },
   {
     title: "Caffèhop",
@@ -74,7 +74,7 @@ export const projects = [
       { label: "AUTH",   value: "email + phone" },
     ],
     stack: ["Next.js 14", "React 18", "Node.js", "Express", "MongoDB", "JWT", "Tailwind"],
-    links: [{ label: "GITHUB", url: "https://github.com/data-is-spaghetti" }],
+    links: [{ label: "GITHUB", url: "https://github.com/thefireflysparkle" }],
   },
   {
     title: "CodeLens",
@@ -91,7 +91,7 @@ export const projects = [
       { label: "AGENTS",    value: "multi" },
     ],
     stack: ["TypeScript", "Node.js", "RAG", "LLM APIs", "npm"],
-    links: [{ label: "GITHUB", url: "https://github.com/data-is-spaghetti" }],
+    links: [{ label: "GITHUB", url: "https://github.com/thefireflysparkle" }],
   },
   {
     title: "Stellarcast",
@@ -108,7 +108,7 @@ export const projects = [
       { label: "LOOKUP", value: "<1ms" },
     ],
     stack: ["TypeScript", "Three.js", "Service Workers", "Chrome MV3"],
-    links: [{ label: "GITHUB", url: "https://github.com/data-is-spaghetti" }],
+    links: [{ label: "GITHUB", url: "https://github.com/thefireflysparkle" }],
   },
   {
     title: "Algorithmic Trading Platform",
@@ -125,7 +125,7 @@ export const projects = [
       { label: "SIGNALS",  value: "pluggable" },
     ],
     stack: ["Python", "Pandas", "NumPy", "WebSockets", "asyncio"],
-    links: [{ label: "GITHUB", url: "https://github.com/data-is-spaghetti" }],
+    links: [{ label: "GITHUB", url: "https://github.com/thefireflysparkle" }],
   },
   {
     title: "Real-Time Audio Analyzer",
@@ -142,7 +142,7 @@ export const projects = [
       { label: "ONSET",  value: "spectral-flux" },
     ],
     stack: ["TypeScript", "Web Audio API", "Canvas", "DSP", "FFT"],
-    links: [{ label: "GITHUB", url: "https://github.com/data-is-spaghetti" }],
+    links: [{ label: "GITHUB", url: "https://github.com/thefireflysparkle" }],
   },
 ];
 
