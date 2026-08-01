@@ -14,7 +14,7 @@ export const profile = {
   coreVector: "// shipping, learning, repeat.",
   location: "Bengaluru, IN",
   origin: "12.9716°N, 77.5946°E",
-  resumePath: "Manpreet_Kaur_Resume.docx",
+  resumePath: "Manpreet_Kaur_Resume.pdf",
 };
 
 export const socials = [
@@ -91,7 +91,10 @@ export const projects = [
       { label: "AGENTS",    value: "multi" },
     ],
     stack: ["TypeScript", "Node.js", "RAG", "LLM APIs", "npm"],
-    links: [{ label: "GITHUB", url: "https://github.com/thefireflysparkle" }],
+    links: [
+      { label: "GITHUB", url: "https://github.com/thefireflysparkle" },
+      { label: "NPM", url: "https://www.npmjs.com/package/@thefireflysparkle/codelens-cli" },
+    ],
   },
   {
     title: "Stellarcast",

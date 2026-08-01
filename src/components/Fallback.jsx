@@ -38,7 +38,7 @@ export default function Fallback() {
           target="_blank"
           rel="noreferrer"
         >
-          ↓ DOWNLOAD RÉSUMÉ [DOC]
+          ↓ DOWNLOAD RÉSUMÉ [PDF]
         </a>
       </section>
 
