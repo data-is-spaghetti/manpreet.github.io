@@ -32,8 +32,8 @@ export const engine = {
   // The big chunky numbers are dialed down; the notes carry the real info.
     specs: [
     { key: "EXP",    value: "4y",        note: "production" },
-    { key: "STACK",  value: "ts · c++", note: "+ py, c#, go" },
-    { key: "FOCUS",  value: "distrib.",  note: "systems · APIs" },
+    { key: "STACK",  value: "js · ts",   note: "+ py, c#, sql" },
+    { key: "FOCUS",  value: "full-stack", note: "APIs · microservices" },
     { key: "STATUS", value: "shipping",  note: "open to roles" },
   ],
 };
@@ -73,7 +73,7 @@ export const projects = [
       { label: "TOKENS", value: "rotated" },
       { label: "AUTH",   value: "email + phone" },
     ],
-    stack: ["Next.js 14", "React 18", "Node.js", "Express", "MongoDB", "JWT", "Tailwind"],
+    stack: ["Next.js 14", "React", "TypeScript", "Node.js", "Express", "MongoDB", "JWT", "Tailwind CSS"],
     links: [{ label: "GITHUB", url: "https://github.com/thefireflysparkle" }],
   },
   {
@@ -90,7 +90,7 @@ export const projects = [
       { label: "STREAM",    value: "SSE" },
       { label: "AGENTS",    value: "multi" },
     ],
-    stack: ["TypeScript", "Node.js", "RAG", "LLM APIs", "npm"],
+    stack: ["TypeScript", "Node.js", "LLM APIs", "RAG", "Vector Search", "SSE"],
     links: [
       { label: "GITHUB", url: "https://github.com/thefireflysparkle" },
       { label: "NPM", url: "https://www.npmjs.com/package/@thefireflysparkle/codelens-cli" },
@@ -158,7 +158,7 @@ export const worldline = [
     org: "Deloitte U.S.I.",
     period: "JAN 2022 — JUN 2022",
     event:
-      "Built 20+ production C++-based HL7/XML healthcare data integration interfaces on InterSystems HealthConnect.",
+      "Built 20+ HL7/XML integration interfaces for healthcare message flows across distributed systems — structured logging, retry handling, exception-safe parsing. Automated MOVEit file-transfer pipelines, improving data accuracy 30%.",
     branch: null,
   },
   {
@@ -167,7 +167,7 @@ export const worldline = [
     org: "Deloitte U.S.I.",
     period: "JUL 2022 — PRESENT",
     event:
-      "Full-stack delivery across enterprise government platforms (Oregon Dept. of Health, SNAP, TANF, Dept. of Education). Architected GraphQL + REST APIs, microservices with circuit-breaker patterns and Redis caching, React/Angular frontends. 1M+ users, 99.9% uptime, sub-200ms responses. Owned CI/CD on AWS, led code review for 8 junior engineers.",
+      "Built and scaled backend services and REST APIs across 12+ production applications serving 1M+ users, sustaining 99.9% uptime and sub-200ms p95 via query optimization on PostgreSQL, MongoDB, and SQL Server. Built GitHub Actions CI/CD pipelines with Docker, cutting production defects 60% and raising team velocity 40%; mentored 8 engineers through code and design reviews. Shipped 3 production React/TypeScript front-ends in 6 months, plus modular Node.js/Express microservices integrating 12+ third-party APIs.",
     branch: null,
   },
   {
@@ -183,18 +183,17 @@ export const worldline = [
 
 // Awards — discrete events on the lattice
 export const events = [
-  { year: "2024",       label: "Deloitte Applause Award",     note: "highest peer recognition · $2M+ engagement" },
-  { year: "2023 · 2026", label: "Deloitte Spot Award ×2",      note: "delivery quality · cross-team mentorship" },
-  { year: "2023",       label: "National Hackathon Finalist", note: "top 5 of 300+ teams" },
+  { year: "2024",       label: "Deloitte Applause Award",     note: "sustained engineering impact" },
+  { year: "2023 · 2026", label: "Deloitte Spot Award ×2",      note: "sustained engineering impact" },
+  { year: "—",          label: "Deloitte Hackathon Finalist",  note: "AI-powered contract-review tool · top 5 of 300+ teams" },
 ];
 
 // ── Skills (rendered in 0x00 Main Engine) ──
 export const skillBasis = {
-  LANGUAGES: ["C++", "TypeScript", "JavaScript", "Python", "C#", "SQL", "Go"],
-  BACKEND:   ["Node.js", "Fastify", ".NET", "REST", "GraphQL", "Microservices", "Event-Driven", "Distributed Systems"],
-  FRONTEND:  ["React", "Next.js", "Angular", "Three.js / R3F", "WebGL", "Tailwind", "Framer Motion"],
-  INFRA:     ["PostgreSQL", "MongoDB", "Redis", "AWS", "Docker", "Kubernetes", "CI/CD"],
-  PRACTICE:  ["TDD", "API Design", "Code Review", "RAG", "LLM Agents", "Observability"],
+  LANGUAGES:            ["JavaScript", "TypeScript", "Python", "C#", "SQL"],
+  "BACKEND & DATA":      ["Node.js", "Express", "REST APIs", "Microservices", "PostgreSQL", "MongoDB", "SQL Server", "Redis"],
+  FRONTEND:             ["React", "Next.js", "Angular", "Tailwind CSS"],
+  "CLOUD, AI & PRACTICES": ["AWS", "Docker", "CI/CD", "Vercel", "LLM APIs", "RAG", "System Design", "Testing", "Agile", "Code Review", "Git"],
 };
 
 // Section registry — the coordinate map
